@@ -57,7 +57,6 @@ function PolicyValidator2(input:PasswordPolicy[]):PasswordPolicy[] {
 		if ((pw.charAt(pos1) == c && pw.charAt(pos2) != c)  ||
 			 ((pw.charAt(pos1) != c && pw.charAt(pos2) == c)) ){
 			validPolicies.push(policy)
-		} else {
 		}
 	})
 	return validPolicies
