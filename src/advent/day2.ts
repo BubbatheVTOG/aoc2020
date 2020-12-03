@@ -1,5 +1,5 @@
 
-interface PasswordPolicy {
+type PasswordPolicy = {
 	min:number
 	max:number,
 	letter:string,
@@ -7,9 +7,9 @@ interface PasswordPolicy {
 }
 
 function PolicyGenerator(input:string[]):PasswordPolicy[] {
-	let policies:PasswordPolicy[];
+	let policies:PasswordPolicy[] = [];
 
-	for (let raw_policy in input) {
+	for (let raw_policy of input) {
 		try {
 			const [numbers, letter_raw, encrypted_pw] = raw_policy.split(' ');
 
@@ -25,20 +25,21 @@ function PolicyGenerator(input:string[]):PasswordPolicy[] {
 			})
 
 		} catch (e) {
-			//srsly?
+			console.log(e)
 		}
 	}
 	return policies
 }
 
 function PolicyValidator(input:PasswordPolicy[]):PasswordPolicy[] {
-	let validPolicies:PasswordPolicy[]
+	let validPolicies:PasswordPolicy[] = []
 
-	for (let policy in input) {
+	for (let policy of input) {
 		let count = 0
-		policy.split('').forEach(x => x == policy ? count++ : null)
+		policy.encrypted_pw.split('')
+			.forEach(c => c == policy.letter ? count++ : null)
 
-		if (count > policy.min && count < policy.max) {
+		if (count >= policy.min && count <= policy.max) {
 			validPolicies.push(policy);
 		}
 	}
