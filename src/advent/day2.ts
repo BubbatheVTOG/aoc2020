@@ -46,8 +46,26 @@ function PolicyValidator(input:PasswordPolicy[]):PasswordPolicy[] {
 	return validPolicies
 }
 
+function PolicyValidator2(input:PasswordPolicy[]):PasswordPolicy[] {
+	let validPolicies:PasswordPolicy[] = []
+
+	input.forEach(policy => {
+		const pw = policy.encrypted_pw
+		const pos1 = --policy.min
+		const pos2 = --policy.max
+		const c = policy.letter
+		if ((pw.charAt(pos1) == c && pw.charAt(pos2) != c)  ||
+			 ((pw.charAt(pos1) != c && pw.charAt(pos2) == c)) ){
+			validPolicies.push(policy)
+		} else {
+		}
+	})
+	return validPolicies
+}
+
 export {
 	PasswordPolicy,
 	PolicyGenerator,
-	PolicyValidator
+	PolicyValidator,
+	PolicyValidator2,
 }

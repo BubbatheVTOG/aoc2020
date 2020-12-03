@@ -10,3 +10,4 @@ console.log(advent.day1p0(INPUT_DAY1));
 console.log(advent.day1p1(INPUT_DAY1));
 
 console.log(advent.day2p0(INPUT_DAY2));
+console.log(advent.day2p1(INPUT_DAY2));
