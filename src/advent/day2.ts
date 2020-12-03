@@ -34,7 +34,7 @@ function PolicyGenerator(input:string[]):PasswordPolicy[] {
 function PolicyValidator(input:PasswordPolicy[]):PasswordPolicy[] {
 	let validPolicies:PasswordPolicy[] = []
 
-	for (let policy of input) {
+	input.forEach(policy => {
 		let count = 0
 		policy.encrypted_pw.split('')
 			.forEach(c => c == policy.letter ? count++ : null)
@@ -42,7 +42,7 @@ function PolicyValidator(input:PasswordPolicy[]):PasswordPolicy[] {
 		if (count >= policy.min && count <= policy.max) {
 			validPolicies.push(policy);
 		}
-	}
+	})
 	return validPolicies
 }
 
