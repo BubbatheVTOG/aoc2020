@@ -14,15 +14,9 @@ export function countCrashes2(input:string[]):number {
 
 function recurseCrashes(input:string[], fromTop:number, fromLeft:number, slope:number, speed:number, treecount:number):number {
 
-	if (fromTop >= input.length) {
-		return treecount
-	}
+	if (fromTop >= input.length) { return treecount }
 
-	if (input[fromTop][fromLeft % input[fromTop].length] == '#') {
-		treecount++
-	}
+	if (input[fromTop][fromLeft % input[fromTop].length] == '#') { treecount++ }
 
-	fromTop+=speed
-	fromLeft+=slope
-	return recurseCrashes(input, fromTop, fromLeft, slope, speed, treecount)
+	return recurseCrashes(input, (fromTop+=speed), (fromLeft+=slope), slope, speed, treecount)
 }
