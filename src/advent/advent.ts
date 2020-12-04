@@ -4,6 +4,11 @@ import {
 	PolicyValidator,
 	PolicyValidator2,
 } from './day2';
+import {
+	countCrashes,
+	countCrashes2,
+} from './day3';
+
 
 export class Advent {
 
@@ -39,6 +44,14 @@ export class Advent {
 	day2p1(input:string[]):string {
 		let policies = PolicyGenerator(input)
 		return ''+PolicyValidator2(policies).length
+	}
+
+	day3p0(input:string[]):string {
+		return ''+countCrashes(input);
+	}
+
+	day3p1(input:string[]):string {
+		return ''+countCrashes2(input);
 	}
 }
 

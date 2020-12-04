@@ -1,12 +1,12 @@
 
-type PasswordPolicy = {
+export type PasswordPolicy = {
 	min:number
 	max:number,
 	letter:string,
 	encrypted_pw:string,
 }
 
-function PolicyGenerator(input:string[]):PasswordPolicy[] {
+export function PolicyGenerator(input:string[]):PasswordPolicy[] {
 	let policies:PasswordPolicy[] = [];
 
 	for (let raw_policy of input) {
@@ -31,7 +31,7 @@ function PolicyGenerator(input:string[]):PasswordPolicy[] {
 	return policies
 }
 
-function PolicyValidator(input:PasswordPolicy[]):PasswordPolicy[] {
+export function PolicyValidator(input:PasswordPolicy[]):PasswordPolicy[] {
 	let validPolicies:PasswordPolicy[] = []
 
 	input.forEach(policy => {
@@ -46,7 +46,7 @@ function PolicyValidator(input:PasswordPolicy[]):PasswordPolicy[] {
 	return validPolicies
 }
 
-function PolicyValidator2(input:PasswordPolicy[]):PasswordPolicy[] {
+export function PolicyValidator2(input:PasswordPolicy[]):PasswordPolicy[] {
 	let validPolicies:PasswordPolicy[] = []
 
 	input.forEach(policy => {
@@ -60,11 +60,4 @@ function PolicyValidator2(input:PasswordPolicy[]):PasswordPolicy[] {
 		}
 	})
 	return validPolicies
-}
-
-export {
-	PasswordPolicy,
-	PolicyGenerator,
-	PolicyValidator,
-	PolicyValidator2,
 }
