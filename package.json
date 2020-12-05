@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node lib/index.js",
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && copyfiles -u 2 src/input/*.txt lib/input && echo 'Files copied.'",
     "watch": "tsc -w -p tsconfig.json"
   },
   "repository": {
@@ -20,5 +20,9 @@
   "homepage": "https://github.com/BubbatheVTOG/aoc2020#readme",
   "devDependencies": {
     "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "@types/node": "^14.14.10",
+    "copyfiles": "^2.4.1"
   }
 }
