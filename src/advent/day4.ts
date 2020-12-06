@@ -120,17 +120,44 @@ export function PassportsValidator(passports:Passport[]): Passport[] {
 
 export function PassportValidator(passport:Passport): boolean {
 	let issues:number = 0
-	//issues |= isECLValid(passport.ecl) ? 0:1
-	//issues |= isPIDValid(passport.pid) ? 0:1
-	//issues |= isHCLValid(passport.hcl) ? 0:1
-	//issues |= isBYRValid(passport.byr) ? 0:1
-	issues |= isIYRValid(passport.iyr) ? 0:1
-	//issues |= isERYValid(passport.eyr) ? 0:1
-	//issues |= isHGTValid(passport.hgt) ? 0:1
+	issues |= passport.ecl ? 0:1
+	issues |= passport.pid ? 0:1
+	issues |= passport.hcl ? 0:1
+	issues |= passport.byr ? 0:1
+	issues |= passport.iyr ? 0:1
+	issues |= passport.eyr ? 0:1
+	issues |= passport.hgt ? 0:1
 
-	if (issues > 0) {
-		console.log('Bad passport: ', passport.iyr)
+	//if (issues > 0) {
+	//	console.log('Good passport: ', passport)
+	//}
+
+	return (issues > 0 ? false : true)
+}
+
+export function PassportsValidator2(passports:Passport[]): Passport[] {
+	let validPassports:Passport[] = []
+	for (let passport of passports) {
+		if (PassportValidator2(passport)) {
+			validPassports.push(passport)
+		}
 	}
+	return validPassports
+}
+
+export function PassportValidator2(passport:Passport): boolean {
+	let issues:number = 0
+	issues |= isECLValid(passport.ecl) ? 0:1
+	issues |= isPIDValid(passport.pid) ? 0:1
+	issues |= isHCLValid(passport.hcl) ? 0:1
+	issues |= isBYRValid(passport.byr) ? 0:1
+	issues |= isIYRValid(passport.iyr) ? 0:1
+	issues |= isERYValid(passport.eyr) ? 0:1
+	issues |= isHGTValid(passport.hgt) ? 0:1
+
+	//if (issues > 0) {
+	//	console.log('Good passport: ', passport)
+	//}
 
 	return (issues > 0 ? false : true)
 }
@@ -140,6 +167,7 @@ export function PassportValidator(passport:Passport): boolean {
 	* @returns boolean - True if valid.
 	*/
 function isECLValid(input:string):boolean {
+	if (!input) { return false }
 	let validVals = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
 	return validVals.includes(input)
 }
@@ -150,6 +178,7 @@ function isECLValid(input:string):boolean {
 	*/
 function isPIDValid(input:string):boolean {
 	if (!input) { return false }
+	if (input.length != 9) { return false }
 	return (input.match(/[0-9]{9}/) ? true:false)
 }
 
@@ -159,7 +188,7 @@ function isPIDValid(input:string):boolean {
 	*/
 function isHCLValid(input:string):boolean {
 	if (!input) { return false }
-	return (input.match(/#[a-fA-F0-9]{6}/) ? true:false)
+	return (input.match(/#[a-f0-9]{6}/) ? true:false)
 }
 
 /**
@@ -207,9 +236,9 @@ function isHGTValid(input:string):boolean {
 
 	let number = parseInt(input)
 	if (units === 'cm') {
-		return ((number > 150) && (number < 193))
+		return ((number >= 150) && (number <= 193))
 	} else if (units === 'in') {
-		return ((number > 59) && (number < 76))
+		return ((number >= 59) && (number <=76))
 	} else {
 		return false
 	}

@@ -11,7 +11,8 @@ import {
 import {
 	PassportGenerator,
 	Passport,
-	PassportsValidator
+	PassportsValidator,
+	PassportsValidator2,
 } from './day4';
 
 export class Advent {
@@ -61,6 +62,11 @@ export class Advent {
 	day4p0(input:string):string {
 		let allPassports = PassportGenerator(input)
 		return ''+PassportsValidator(allPassports).length
+	}
+
+	day4p1(input:string):string {
+		let allPassports = PassportGenerator(input)
+		return ''+PassportsValidator2(allPassports).length
 	}
 }
 
