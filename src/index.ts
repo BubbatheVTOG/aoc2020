@@ -29,3 +29,9 @@ console.log(advent.day4p0(INPUT_DAY4));
 console.log(advent.day4p1(INPUT_DAY4));
 console.log('End: Day 4 --------------------------------------------------------------------')
 
+console.log('Start: Day 5 ------------------------------------------------------------------')
+const INPUT_DAY5 = ReadAssetFile('input_day5.txt')
+console.log(advent.day5p0(INPUT_DAY5));
+console.log(advent.day5p1(INPUT_DAY5));
+console.log('End: Day 5 --------------------------------------------------------------------')
+

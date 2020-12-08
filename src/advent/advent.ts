@@ -1,5 +1,4 @@
 import {
-	PasswordPolicy,
 	PolicyGenerator,
 	PolicyValidator,
 	PolicyValidator2,
@@ -10,10 +9,14 @@ import {
 } from './day3';
 import {
 	PassportGenerator,
-	Passport,
 	PassportsValidator,
 	PassportsValidator2,
 } from './day4';
+
+import {
+	getHighestBoardingPass,
+	getMyBoardingPass
+} from './day5';
 
 export class Advent {
 
@@ -67,6 +70,14 @@ export class Advent {
 	day4p1(input:string):string {
 		let allPassports = PassportGenerator(input)
 		return ''+PassportsValidator2(allPassports).length
+	}
+
+	day5p0(input:string):string {
+		return getHighestBoardingPass(input)
+	}
+
+	day5p1(input:string):string {
+		return getMyBoardingPass(input)
 	}
 }
 
